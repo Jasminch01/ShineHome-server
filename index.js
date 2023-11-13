@@ -24,6 +24,7 @@ const client = new MongoClient(uri, {
 
 const serviceCollection = client.db('ShineHome').collection('Services');
 const bedroomCollection = client.db('ShineHome').collection('bedroom');
+const quoteInfoCollection = client.db('ShineHome').collection('quoteInfoCollection');
 
 async function run() {
   try {
@@ -38,6 +39,12 @@ async function run() {
     //get rooms collection
     app.get('/bedrooms', async (req, res) => {
         const result = await bedroomCollection.find().toArray()
+        res.send(result)
+    })
+
+    app.post('/quoteInfo', async(req, res) => {
+        const quoteInfo = req.body;
+        const result = await quoteInfoCollection.insertOne(quoteInfo);
         res.send(result)
     })
     // Send a ping to confirm a successful connection
