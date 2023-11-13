@@ -29,7 +29,7 @@ const quoteInfoCollection = client.db('ShineHome').collection('quoteInfoCollecti
 async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
-    await client.connect();
+    // await client.connect();
 
     app.get('/services', async (req, res) => {
         const result = await serviceCollection.find().toArray()
