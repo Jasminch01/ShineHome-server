@@ -11,7 +11,11 @@ const port = process.env.PORT || 5001;
 // middleware
 app.use(
   cors({
-    origin: ["http://localhost:5173"],
+    origin: [
+      "http://localhost:5173",
+      "https://www.ozshinecleaners.com.au",
+      "https://comforting-pegasus-72fff5.netlify.app",
+    ],
     credentials: true,
   })
 );
@@ -2306,32 +2310,7 @@ async function run() {
         html: emailTemplate,
         replyTo: quoteInfo.form_email,
       };
-
-      // nodeoutlook.sendEmail({
-      //   auth: {
-      //     user: process.env.MAIL_USER,
-      //     pass: process.env.MAIL_PASS,
-      //   },
-      //   from: quoteInfo.form_email,
-      //   to: [quoteInfo.to_email[0], quoteInfo.to_email[1]],
-      //   subject: quoteInfo.subject,
-      //   html: emailTemplate,
-      //   replyTo: quoteInfo.form_email,
-      // });
-      // res.send(sendEmail);
-
-      //   transporter.sendMail(mailOptions, (error, success) => {
-      //     if (error) {
-      //       console.log(error);
-      //     } else {
-      //       console.log(`Server is ready to take our messages ${success}`);
-      //     }
-      //   });
-      // } catch (error) {
-      //   console.log(`error sending email : ${error}`);
-      // }
-
-      //
+      //send mail
       const sendMailPromise = new Promise((resolve, reject) => {
         transporter.sendMail(mailOptions, (error, success) => {
           if (error) {
