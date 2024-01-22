@@ -6,10 +6,10 @@ const { MongoClient, ServerApiVersion } = require("mongodb");
 require("dotenv").config();
 const app = express();
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 5001;
 // middleware
 app.use(cors({
-  origin : ['http://localhost:5174/'],
+  origin : ['http://localhost:5174',],
   credentials : true
 }));
 app.use(express.json());
@@ -24,9 +24,7 @@ const client = new MongoClient(uri, {
     deprecationErrors: true,
   },
 });
-
-const serviceCollection = client.db("ShineHome").collection("Services");
-const bedroomCollection = client.db("ShineHome").collection("bedroom");
+//db collections
 const quoteInfoCollection = client
   .db("ShineHome")
   .collection("quoteInfoCollection");
@@ -36,23 +34,12 @@ async function run() {
     // Connect the client to the server	(optional starting in v4.7)
     // await client.connect();
 
-    app.get("/services", async (req, res) => {
-      const result = await serviceCollection.find().toArray();
-      res.send(result);
-    });
-
-    //get rooms collection
-    app.get("/bedrooms", async (req, res) => {
-      const result = await bedroomCollection.find().toArray();
-      res.send(result);
-    });
-
-    //original
+    //post client qoute into database
     app.post("/quoteInfo", async (req, res) => {
       const quoteInfo = req.body;
       const result = await quoteInfoCollection.insertOne(quoteInfo);
 
-      //send email
+      //send email to client
       const emailTemplate = `<!DOCTYPE html>
 
       <html
