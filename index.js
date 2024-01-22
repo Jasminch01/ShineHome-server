@@ -2300,8 +2300,10 @@ async function run() {
           html: emailTemplate,
           replyTo: quoteInfo.form_email,
         });
+        res.send(sendEmail)
       } catch (error) {
         console.log(`error sending email : ${error}`);
+        res.status(500).send(error)
       }
       res.send(result);
     });
