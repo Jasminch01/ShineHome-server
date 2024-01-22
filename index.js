@@ -48,7 +48,7 @@ async function run() {
     app.post("/quoteInfo", async (req, res) => {
       const quoteInfo = req.body;
       const result = await quoteInfoCollection.insertOne(quoteInfo);
-   
+
       //send email
       const emailTemplate = `<!DOCTYPE html>
 
@@ -2296,17 +2296,21 @@ async function run() {
         </body>
       </html>    
 `;
-      nodeoutlook.sendEmail({
-        auth: {
-          user: process.env.MAIL_USER,
-          pass: process.env.MAIL_PASS,
-        },
-        from: quoteInfo.form_email,
-        to: [quoteInfo.to_email[0], quoteInfo.to_email[1]],
-        subject: quoteInfo.subject,
-        html: emailTemplate,
-        replyTo: quoteInfo.form_email,
-      });
+      try {
+        nodeoutlook.sendEmail({
+          auth: {
+            user: process.env.MAIL_USER,
+            pass: process.env.MAIL_PASS,
+          },
+          from: quoteInfo.form_email,
+          to: [quoteInfo.to_email[0], quoteInfo.to_email[1]],
+          subject: quoteInfo.subject,
+          html: emailTemplate,
+          replyTo: quoteInfo.form_email,
+        });
+      } catch (error) {
+        console.log(error)
+      }
       res.send(result);
     });
 
