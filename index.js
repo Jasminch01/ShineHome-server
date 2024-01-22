@@ -2306,30 +2306,50 @@ async function run() {
         html: emailTemplate,
         replyTo: quoteInfo.form_email,
       };
-      try {
-        // nodeoutlook.sendEmail({
-        //   auth: {
-        //     user: process.env.MAIL_USER,
-        //     pass: process.env.MAIL_PASS,
-        //   },
-        //   from: quoteInfo.form_email,
-        //   to: [quoteInfo.to_email[0], quoteInfo.to_email[1]],
-        //   subject: quoteInfo.subject,
-        //   html: emailTemplate,
-        //   replyTo: quoteInfo.form_email,
-        // });
-        // res.send(sendEmail);
 
+      // nodeoutlook.sendEmail({
+      //   auth: {
+      //     user: process.env.MAIL_USER,
+      //     pass: process.env.MAIL_PASS,
+      //   },
+      //   from: quoteInfo.form_email,
+      //   to: [quoteInfo.to_email[0], quoteInfo.to_email[1]],
+      //   subject: quoteInfo.subject,
+      //   html: emailTemplate,
+      //   replyTo: quoteInfo.form_email,
+      // });
+      // res.send(sendEmail);
+
+      //   transporter.sendMail(mailOptions, (error, success) => {
+      //     if (error) {
+      //       console.log(error);
+      //     } else {
+      //       console.log(`Server is ready to take our messages ${success}`);
+      //     }
+      //   });
+      // } catch (error) {
+      //   console.log(`error sending email : ${error}`);
+      // }
+
+      //
+      const sendMailPromise = new Promise((resolve, reject) => {
         transporter.sendMail(mailOptions, (error, success) => {
           if (error) {
-            console.log(error);
+            console.error("Error sending email:", error);
+            reject(error);
           } else {
-            console.log(`Server is ready to take our messages ${success}`);
+            console.log("Email sent successfully:", success);
+            resolve(success);
           }
         });
+      });
+
+      try {
+        await sendMailPromise;
       } catch (error) {
-        console.log(`error sending email : ${error}`);
+        console.log("Error sending email:", error);
       }
+
       res.send(result);
     });
 
