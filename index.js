@@ -45,7 +45,6 @@ async function run() {
     app.post("/quoteInfo", async (req, res) => {
       const quoteInfo = req.body;
       const result = await quoteInfoCollection.insertOne(quoteInfo);
-      res.send(result);
       //nodemail mail transporter
       const transporter = nodemailer.createTransport({
         host: "smtp.office365.com",
@@ -2329,6 +2328,7 @@ async function run() {
       } catch (error) {
         console.log("Error sending email:", error);
       }
+      res.send(result);
     });
 
     // Send a ping to confirm a successful connection
