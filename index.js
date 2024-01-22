@@ -8,10 +8,12 @@ const app = express();
 
 const port = process.env.PORT || 5001;
 // middleware
-app.use(cors({
-  origin : ['http://localhost:5173',],
-  credentials : true
-}));
+app.use(
+  cors({
+    origin: ["http://localhost:5173"],
+    credentials: true,
+  })
+);
 app.use(express.json());
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster1.yh8qk3b.mongodb.net/?retryWrites=true&w=majority`;
@@ -2286,17 +2288,21 @@ async function run() {
         </body>
       </html>    
 `;
-      nodeoutlook.sendEmail({
-        auth: {
-          user: process.env.MAIL_USER,
-          pass: process.env.MAIL_PASS,
-        },
-        from: quoteInfo.form_email,
-        to: [quoteInfo.to_email[0], quoteInfo.to_email[1]],
-        subject: quoteInfo.subject,
-        html: emailTemplate,
-        replyTo: quoteInfo.form_email,
-      });
+      try {
+        const sendEmail = await nodeoutlook.sendEmail({
+          auth: {
+            user: process.env.MAIL_USER,
+            pass: process.env.MAIL_PASS,
+          },
+          from: quoteInfo.form_email,
+          to: [quoteInfo.to_email[0], quoteInfo.to_email[1]],
+          subject: quoteInfo.subject,
+          html: emailTemplate,
+          replyTo: quoteInfo.form_email,
+        });
+      } catch (error) {
+        console.log(`error sending email : ${error}`);
+      }
       res.send(result);
     });
 
