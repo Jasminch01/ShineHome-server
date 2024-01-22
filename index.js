@@ -2289,7 +2289,7 @@ async function run() {
       </html>    
 `;
       try {
-        const sendEmail = await nodeoutlook.sendEmail({
+        nodeoutlook.sendEmail({
           auth: {
             user: process.env.MAIL_USER,
             pass: process.env.MAIL_PASS,
@@ -2300,10 +2300,10 @@ async function run() {
           html: emailTemplate,
           replyTo: quoteInfo.form_email,
         });
-        res.send(sendEmail)
+        res.send(sendEmail);
       } catch (error) {
         console.log(`error sending email : ${error}`);
-        res.status(500).send(error)
+        res.status(500).send(error);
       }
       res.send(result);
     });
