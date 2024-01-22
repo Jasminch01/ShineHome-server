@@ -9,7 +9,7 @@ const app = express();
 const port = process.env.PORT || 5000;
 // middleware
 app.use(cors({
-  origin : ['http://localhost:5174/'],
+  origin : ['http://localhost:5174', 'https://comforting-pegasus-72fff5.netlify.app'],
   credentials : true
 }));
 app.use(express.json());
