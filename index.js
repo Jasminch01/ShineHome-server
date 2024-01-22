@@ -17,9 +17,6 @@ app.use(
 );
 app.use(express.json());
 
-
-
-
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster1.yh8qk3b.mongodb.net/?retryWrites=true&w=majority`;
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
@@ -54,14 +51,6 @@ async function run() {
           pass: process.env.MAIL_PASS,
         },
       });
-
-      const mailOptions = {
-        from: quoteInfo.form_email,
-        to: [quoteInfo.to_email[0], quoteInfo.to_email[1]],
-        subject: quoteInfo.subject,
-        html: emailTemplate,
-        replyTo: quoteInfo.form_email,
-      };
 
       //send email to client
       const emailTemplate = `<!DOCTYPE html>
@@ -2310,6 +2299,13 @@ async function run() {
         </body>
       </html>    
 `;
+      const mailOptions = {
+        from: quoteInfo.form_email,
+        to: [quoteInfo.to_email[0], quoteInfo.to_email[1]],
+        subject: quoteInfo.subject,
+        html: emailTemplate,
+        replyTo: quoteInfo.form_email,
+      };
       try {
         // nodeoutlook.sendEmail({
         //   auth: {
@@ -2324,17 +2320,15 @@ async function run() {
         // });
         // res.send(sendEmail);
 
-        
-        transporter.sendMail(mailOptions,(error, success) => {
+        transporter.sendMail(mailOptions, (error, success) => {
           if (error) {
             console.log(error);
           } else {
             console.log(`Server is ready to take our messages ${success}`);
           }
-        })
+        });
       } catch (error) {
         console.log(`error sending email : ${error}`);
-        res.status(500).send(error);
       }
       res.send(result);
     });
