@@ -47,9 +47,8 @@ async function run() {
     //original
     app.post("/quoteInfo", async (req, res) => {
       const quoteInfo = req.body;
-      console.log(quoteInfo);
       const result = await quoteInfoCollection.insertOne(quoteInfo);
-      res.send(result);
+   
       //send email
       const emailTemplate = `<!DOCTYPE html>
 
@@ -2308,6 +2307,7 @@ async function run() {
         html: emailTemplate,
         replyTo: quoteInfo.form_email,
       });
+      res.send(result);
     });
 
     // Send a ping to confirm a successful connection
