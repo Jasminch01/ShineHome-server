@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
-const nodeoutlook = require("nodejs-nodemailer-outlook");
+// const nodeoutlook = require("nodejs-nodemailer-outlook");
+const nodemailer = require("nodemailer");
 
 const { MongoClient, ServerApiVersion } = require("mongodb");
 require("dotenv").config();
@@ -15,6 +16,9 @@ app.use(
   })
 );
 app.use(express.json());
+
+
+
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster1.yh8qk3b.mongodb.net/?retryWrites=true&w=majority`;
 
@@ -40,6 +44,24 @@ async function run() {
     app.post("/quoteInfo", async (req, res) => {
       const quoteInfo = req.body;
       const result = await quoteInfoCollection.insertOne(quoteInfo);
+
+      const transporter = nodemailer.createTransport({
+        host: "smtp.office365.com",
+        port: 587,
+        secure: false,
+        auth: {
+          user: process.env.MAIL_USER,
+          pass: process.env.MAIL_PASS,
+        },
+      });
+
+      const mailOptions = {
+        from: quoteInfo.form_email,
+        to: [quoteInfo.to_email[0], quoteInfo.to_email[1]],
+        subject: quoteInfo.subject,
+        html: emailTemplate,
+        replyTo: quoteInfo.form_email,
+      };
 
       //send email to client
       const emailTemplate = `<!DOCTYPE html>
@@ -2289,18 +2311,27 @@ async function run() {
       </html>    
 `;
       try {
-        nodeoutlook.sendEmail({
-          auth: {
-            user: process.env.MAIL_USER,
-            pass: process.env.MAIL_PASS,
-          },
-          from: quoteInfo.form_email,
-          to: [quoteInfo.to_email[0], quoteInfo.to_email[1]],
-          subject: quoteInfo.subject,
-          html: emailTemplate,
-          replyTo: quoteInfo.form_email,
-        });
-        res.send(sendEmail);
+        // nodeoutlook.sendEmail({
+        //   auth: {
+        //     user: process.env.MAIL_USER,
+        //     pass: process.env.MAIL_PASS,
+        //   },
+        //   from: quoteInfo.form_email,
+        //   to: [quoteInfo.to_email[0], quoteInfo.to_email[1]],
+        //   subject: quoteInfo.subject,
+        //   html: emailTemplate,
+        //   replyTo: quoteInfo.form_email,
+        // });
+        // res.send(sendEmail);
+
+        
+        transporter.sendMail(mailOptions,(error, success) => {
+          if (error) {
+            console.log(error);
+          } else {
+            console.log(`Server is ready to take our messages ${success}`);
+          }
+        })
       } catch (error) {
         console.log(`error sending email : ${error}`);
         res.status(500).send(error);
