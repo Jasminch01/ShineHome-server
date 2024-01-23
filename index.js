@@ -17,6 +17,7 @@ app.use(
       "https://comforting-pegasus-72fff5.netlify.app",
     ],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    exposedHeaders: ['Content-Length', 'X-Foo'],
     credentials: true,
   })
 );
