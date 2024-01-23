@@ -16,8 +16,6 @@ app.use(
       "https://www.ozshinecleaners.com.au",
       "https://comforting-pegasus-72fff5.netlify.app",
     ],
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    exposedHeaders: ["Content-Length", "X-Foo"],
     credentials: true,
   })
 );
@@ -2331,6 +2329,7 @@ async function run() {
       } catch (error) {
         console.log("Error sending email:", error);
       }
+      console.log(result);
       res.send(result);
     });
 
