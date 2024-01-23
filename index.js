@@ -12,9 +12,9 @@ const port = process.env.PORT || 5001;
 app.use(
   cors({
     origin: [
-      "http://localhost:5173",
-      "https://www.ozshinecleaners.com.au",
-      "https://comforting-pegasus-72fff5.netlify.app",
+      "http://localhost:5173/",
+      "https://www.ozshinecleaners.com.au/",
+      "https://comforting-pegasus-72fff5.netlify.app/",
     ],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true,
