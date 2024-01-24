@@ -2297,6 +2297,88 @@ async function run() {
                         </tbody>
                       </table>
                 <!-- footer -->
+                <!-- separator -->
+                <table
+                border="0"
+                cellpadding="25"
+                cellspacing="0"
+                class="image_block block-4"
+                role="presentation"
+                style="
+                  mso-table-lspace: 0pt;
+                  mso-table-rspace: 0pt;
+                "
+                width="100%"
+              >
+                <tr>
+                  <td class="pad">
+                    <div
+                      align="center"
+                      class="alignment"
+                      style="line-height: 10px"
+                    >
+                      <div style="max-width: 136px">
+                        <img
+                          alt="Separator"
+                          src="https://i.ibb.co/Y2WBQNz/separator.png"
+                          style="
+                            display: block;
+                            height: auto;
+                            border: 0;
+                            width: 100%;
+                          "
+                          title="Separator"
+                          width="136"
+                        />
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+    
+              <!-- separator -->
+    
+                <!-- social icons -->
+                <table align="center" border="0" cellpadding="0" cellspacing="0" class="row row-22" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
+                  <tbody>
+                  <tr>
+                  <td>
+                  <table align="center" border="0" cellpadding="0" cellspacing="0" class="row-content stack" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; color: #000000; width: 680px; margin: 0 auto;" width="680">
+                  <tbody>
+                  <tr>
+                  <td class="column column-1" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; padding-bottom: 15px; padding-top: 15px; vertical-align: top; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;" width="100%">
+                  <table border="0" cellpadding="0" cellspacing="0" class="icons_block block-1" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
+                  <tr>
+                  <td class="pad" style="vertical-align: middle; color: #000000; font-family: inherit; font-size: 14px; text-align: center;">
+                  <table align="center" cellpadding="0" cellspacing="0" class="alignment" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+                  <tr>
+                  <td style="vertical-align: middle; text-align: center; padding-top: 5px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px;"> <a href="https://www.ozshinecleaners.com.au"><img align="center" alt="Default" class="icon" height="32" src="https://i.ibb.co/PCSJ0Yw/web.png" style="display: block; height: auto; margin: 0 auto; border: 0;" width="30"/></a></td>
+                  </tr>
+                  </table>
+                  </td>
+                  </tr>
+                  </table>
+                  <table border="0" cellpadding="10" cellspacing="0" class="social_block block-2" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
+                  <tr>
+                  <td class="pad">
+                  <div align="center" class="alignment">
+                  <table border="0" cellpadding="0" cellspacing="0" class="social-table" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; display: inline-block;" width="208px">
+                  <tr>
+                  </tr>
+                  </table>
+                  </div>
+                  </td>
+                  </tr>
+                  </table>
+                  </td>
+                  </tr>
+                  </tbody>
+                  </table>
+                  </td>
+                  </tr>
+                  </tbody>
+                  </table>
+                  <!-- social icons -->
                     </td>
                   </tr>
                 </tbody>
