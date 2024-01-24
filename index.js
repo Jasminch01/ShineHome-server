@@ -14,7 +14,7 @@ app.use(
     origin: [
       "http://localhost:5173",
       "https://www.ozshinecleaners.com.au",
-      "https://comforting-pegasus-72fff5.netlify.app",
+      "https://stupendous-biscotti-af48ad.netlify.app",
     ],
     credentials: true,
   })
