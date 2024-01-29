@@ -1312,7 +1312,7 @@ async function run() {
                                               <p
                                                 style="margin: 0; word-break: break-word"
                                               >
-                                                LiningArea
+                                                Living Area
                                               </p>
                                             </div>
                                           </td>
@@ -1578,7 +1578,7 @@ async function run() {
                                               <p
                                                 style="margin: 0; word-break: break-word"
                                               >
-                                               kitcenArea
+                                               Kitchen Area
                                               </p>
                                             </div>
                                           </td>
@@ -1845,7 +1845,7 @@ async function run() {
                                               <p
                                                 style="margin: 0; word-break: break-word"
                                               >
-                                                LundryArea
+                                                Laundry Area
                                               </p>
                                             </div>
                                           </td>
