@@ -14,7 +14,7 @@ app.use(
     origin: [
       "http://localhost:5173",
       "https://www.ozshinecleaners.com.au",
-      "https://stupendous-biscotti-af48ad.netlify.app",
+      "https://comforting-pegasus-72fff5.netlify.app",
     ],
     credentials: true,
   })
@@ -2440,7 +2440,7 @@ async function run() {
                                           <p
                                             style="margin: 0; word-break: break-word"
                                           >
-                                            ${quoteInfo.wetwipe}
+                                            ${quoteInfo.wetWipe}
                                           </p>
                                         </div>
                                       </td>
