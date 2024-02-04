@@ -3175,7 +3175,7 @@ async function run() {
                                           <p
                                             style="margin: 0; word-break: break-word"
                                           >
-                                            Garage
+                                            Garage (sweep and tidy) 
                                           </p>
                                         </div>
                                       </td>
