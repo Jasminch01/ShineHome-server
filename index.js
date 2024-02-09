@@ -2377,7 +2377,7 @@ async function run() {
                                           <p
                                             style="margin: 0; word-break: break-word"
                                           >
-                                            Wet Wipe Blinds
+                                            Number Of Blinds
                                           </p>
                                         </div>
                                       </td>
@@ -2455,7 +2455,7 @@ async function run() {
                     </tbody>
                   </table>
             <!-- wet wipe blinds -->
-                            <!-- ldivider -->
+            <!-- ldivider -->
             <table
             align="center"
             border="0"
@@ -2643,7 +2643,7 @@ async function run() {
                                           <p
                                             style="margin: 0; word-break: break-word"
                                           >
-                                            Sopt Walls
+                                            Sopt Clean (Walls)
                                           </p>
                                         </div>
                                       </td>
@@ -2721,7 +2721,7 @@ async function run() {
                     </tbody>
                   </table>
             <!-- spot walls -->
-                            <!-- divider -->
+            <!-- divider -->
             <table
             align="center"
             border="0"
