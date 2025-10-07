@@ -13,7 +13,6 @@ app.use(
   cors({
     origin: [
       "http://localhost:3000",
-      "https://www.ozshinecleaners.com.au",
       "https://ozshine-cleaners.vercel.app/",
       "https://www.ozshinecleaners.com.",
     ],
@@ -76,13 +75,28 @@ async function run() {
           
           <!-- Header with Logo -->
           <tr>
-            <td style="background: linear-gradient(135deg, #0F5E46 0%, #0a4232 100%); padding: 40px; text-align: center;">
-              <a href="https://www.ozshinecleaners.com.au" target="_blank" rel="noopener" style="text-decoration: none; outline: none; display: inline-block;">
-                <img src="cid:logo.png" alt="OzShine Cleaners Logo" style="height: 50px; width: auto; display: block;" height="50">
+            <td style="background: linear-gradient(135deg, #0F5E46 0%, #0a4232 100%); padding: 50px 40px; text-align: center; position: relative;">
+              <!-- Logo -->
+              <a 
+                href="https://www.ozshinecleaners.com" 
+                target="_blank" 
+                rel="noopener" 
+                style="text-decoration: none; outline: none; display: inline-block; background-color: rgba(255, 255, 255, 0.15); padding: 12px 28px; border-radius: 50px; backdrop-filter: blur(10px); border: 2px solid rgba(255, 255, 255, 0.2); transition: all 0.3s ease;"
+              >
+                <span style="color: #ffffff; font-size: 22px; font-weight: 700; font-family: 'Segoe UI', Arial, sans-serif; letter-spacing: 0.5px;">
+                  ✨ OzShine Cleaners
+                </span>
               </a>
-              <h1 style="margin: 20px 0 0 0; color: #ffffff; font-size: 28px; font-weight: 600; font-family: 'Segoe UI', Arial, sans-serif;">
+
+              <!-- Heading -->
+              <h1 style="margin: 30px 0 0 0; color: #ffffff; font-size: 32px; font-weight: 700; font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.3; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
                 Thank You for Your Request!
               </h1>
+              
+              <!-- Subheading -->
+              <p style="margin: 12px 0 0 0; color: rgba(255, 255, 255, 0.9); font-size: 16px; font-family: 'Segoe UI', Arial, sans-serif; font-weight: 400;">
+                We're excited to make your space sparkle ✨
+              </p>
             </td>
           </tr>
 
@@ -101,14 +115,12 @@ async function run() {
               
               <!-- Greeting -->
               <p style="margin: 0 0 25px 0; color: #2c3e50; font-size: 18px; font-family: 'Segoe UI', Arial, sans-serif;">
-                Hi <strong style="color: #0F5E46;">${quoteInfo.name}</strong>,
+                Hi <strong style="color: #0F5E46;">John Doe</strong>,
               </p>
 
               <!-- Main Message -->
               <p style="margin: 0 0 25px 0; color: #495057; font-size: 16px; line-height: 1.6; font-family: 'Segoe UI', Arial, sans-serif;">
-                Thank you for reaching out to us! We have received your request for <strong style="color: #0F5E46;">${
-                  quoteInfo.service
-                }</strong>, and we're excited to help make your space spotless.
+                Thank you for reaching out to us! We have received your request for <strong style="color: #0F5E46;">Deep Cleaning Service</strong>, and we're excited to help make your space spotless.
               </p>
 
               <!-- Info Box -->
@@ -171,7 +183,7 @@ async function run() {
                       Service Type:
                     </td>
                     <td style="padding: 8px 0; color: #2c3e50; font-size: 14px; font-weight: 600; font-family: 'Segoe UI', Arial, sans-serif;">
-                      ${quoteInfo.service}
+                      Deep Cleaning Service
                     </td>
                   </tr>
                   <tr>
@@ -179,7 +191,7 @@ async function run() {
                       Contact Email:
                     </td>
                     <td style="padding: 8px 0; color: #2c3e50; font-size: 14px; font-weight: 600; font-family: 'Segoe UI', Arial, sans-serif;">
-                      ${quoteInfo.email}
+                      john.doe@example.com
                     </td>
                   </tr>
                   <tr>
@@ -187,7 +199,7 @@ async function run() {
                       Phone Number:
                     </td>
                     <td style="padding: 8px 0; color: #2c3e50; font-size: 14px; font-weight: 600; font-family: 'Segoe UI', Arial, sans-serif;">
-                      ${quoteInfo.phone || "Not provided"}
+                      +61 412 345 678
                     </td>
                   </tr>
                 </table>
@@ -247,7 +259,7 @@ async function run() {
                   Best regards,
                 </p>
                 <p style="margin: 0; color: #2c3e50; font-size: 16px; font-weight: 600; font-family: 'Segoe UI', Arial, sans-serif;">
-                  The <a href="https://www.ozshinecleaners.com.au" style="color: #0F5E46; text-decoration: none; font-weight: 600;">OzShine Cleaners</a> Team
+                  The <a href="https://www.ozshinecleaners.com" style="color: #0F5E46; text-decoration: none; font-weight: 600;">OzShine Cleaners</a> Team
                 </p>
               </div>
 
@@ -265,7 +277,7 @@ async function run() {
                 <p style="margin: 0; color: #6c757d; font-size: 14px; font-family: 'Segoe UI', Arial, sans-serif;">
                   📞 <a href="tel:+61452676982" style="color: #0F5E46; text-decoration: none;">+61 452 676 982</a>
                   <span style="color: #dee2e6; margin: 0 8px;">|</span>
-                  🌐 <a href="https://www.ozshinecleaners.com.au" style="color: #0F5E46; text-decoration: none;">www.ozshinecleaners.com.au</a>
+                  🌐 <a href="https://www.ozshinecleaners.com" style="color: #0F5E46; text-decoration: none;">www.ozshinecleaners.com</a>
                 </p>
               </div>
               
@@ -274,7 +286,7 @@ async function run() {
                 This email was sent because you requested a quote from OzShine Cleaners.
               </p>
               <p style="margin: 0; color: #adb5bd; font-size: 12px; font-family: 'Segoe UI', Arial, sans-serif;">
-                © ${new Date().getFullYear()} OzShine Cleaners. All rights reserved.
+                © 2025 OzShine Cleaners. All rights reserved.
               </p>
             </td>
           </tr>
@@ -284,7 +296,7 @@ async function run() {
     </tr>
   </table>
 </body>
-</htm
+</html>
 `;
       const emailTemplate2 = `
 <!DOCTYPE html>
@@ -485,10 +497,10 @@ ${quoteInfo.message}
       const sendMailPromise = new Promise((resolve, reject) => {
         transporter.sendMail(mailOptions, (error, success) => {
           if (error) {
-            console.error("Error sending email:", error);
+            // console.error("Error sending email:", error);
             reject(error);
           } else {
-            console.log("Email sent successfully:", success);
+            // console.log("Email sent successfully:", success);
             resolve(success);
           }
         });
@@ -512,10 +524,10 @@ ${quoteInfo.message}
 
         transporter.sendMail(mailOptions2, (error, success) => {
           if (error) {
-            console.error("Error sending second email:", error);
+            // console.error("Error sending second email:", error);
             reject(error);
           } else {
-            console.log("Second Email sent successfully:", success);
+            // console.log("Second Email sent successfully:", success);
             resolve(success);
           }
         });
@@ -524,7 +536,7 @@ ${quoteInfo.message}
       try {
         await sendMailPromise2;
       } catch (error) {
-        console.log("Error sending second email:", error);
+        // console.log("Error sending second email:", error);
       }
       //
       // console.log(result);
