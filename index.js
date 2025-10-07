@@ -13,7 +13,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:3000",
-      "https://ozshine-cleaners.vercel.app/",
+      "https://ozshine-cleaners.vercel.app",
       "https://www.ozshinecleaners.com.",
     ],
     credentials: true,
