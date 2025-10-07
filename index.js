@@ -95,7 +95,7 @@ app.post("/quoteInfo", async (req, res) => {
 
               <!-- Main Message -->
               <p style="margin: 0 0 25px 0; color: #495057; font-size: 16px; line-height: 1.6; font-family: 'Segoe UI', Arial, sans-serif;">
-                Thank you for reaching out to us! We have received your request for <strong style="color: #0F5E46;">Deep Cleaning Service</strong>, and we're excited to help make your space spotless.
+                Thank you for reaching out to us! We have received your request for <strong style="color: #0F5E46;">${quoteInfo?.service}</strong>, and we're excited to help make your space spotless.
               </p>
 
               <!-- Info Box -->
