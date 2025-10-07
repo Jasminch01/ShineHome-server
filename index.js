@@ -21,40 +21,6 @@ app.use(
 );
 app.use(express.json());
 
-// const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster1.yh8qk3b.mongodb.net/?retryWrites=true&w=majority`;
-
-// Create a MongoClient with a MongoClientOptions object to set the Stable API version
-// const client = new MongoClient(uri, {
-//   serverApi: {
-//     version: ServerApiVersion.v1,
-//     strict: true,
-//     deprecationErrors: true,
-//   },
-// });
-
-//db collections
-// const quoteInfoCollection = client
-//   .db("ShineHome")
-//   .collection("quoteInfoCollection");
-
-// async function run() {
-//   try {
-//     // Connect the client to the server	(optional starting in v4.7)
-//     await client.connect();
-
-//     //post client qoute into database
-
-//     // await client.db("admin").command({ ping: 1 });
-//     console.log(
-//       "Pinged your deployment. You successfully connected to MongoDB!"
-//     );
-//   } finally {
-//     // Ensures that the client will close when you finish/error
-//     // await client.close();
-//   }
-// }
-// run().catch(console.dir);
-
 app.post("/quoteInfo", async (req, res) => {
   const quoteInfo = req.body;
 
@@ -124,7 +90,7 @@ app.post("/quoteInfo", async (req, res) => {
               
               <!-- Greeting -->
               <p style="margin: 0 0 25px 0; color: #2c3e50; font-size: 18px; font-family: 'Segoe UI', Arial, sans-serif;">
-                Hi <strong style="color: #0F5E46;">John Doe</strong>,
+                Hi <strong style="color: #0F5E46;">${quoteInfo?.name}</strong>,
               </p>
 
               <!-- Main Message -->
@@ -192,7 +158,7 @@ app.post("/quoteInfo", async (req, res) => {
                       Service Type:
                     </td>
                     <td style="padding: 8px 0; color: #2c3e50; font-size: 14px; font-weight: 600; font-family: 'Segoe UI', Arial, sans-serif;">
-                      Deep Cleaning Service
+                      ${quoteInfo?.service}
                     </td>
                   </tr>
                   <tr>
@@ -200,7 +166,7 @@ app.post("/quoteInfo", async (req, res) => {
                       Contact Email:
                     </td>
                     <td style="padding: 8px 0; color: #2c3e50; font-size: 14px; font-weight: 600; font-family: 'Segoe UI', Arial, sans-serif;">
-                      john.doe@example.com
+                      ${quoteInfo.email}
                     </td>
                   </tr>
                   <tr>
@@ -208,7 +174,7 @@ app.post("/quoteInfo", async (req, res) => {
                       Phone Number:
                     </td>
                     <td style="padding: 8px 0; color: #2c3e50; font-size: 14px; font-weight: 600; font-family: 'Segoe UI', Arial, sans-serif;">
-                      +61 412 345 678
+                      ${quoteInfo?.phone || "Not provided"}
                     </td>
                   </tr>
                 </table>
