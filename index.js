@@ -538,9 +538,6 @@ ${quoteInfo.message}
       } catch (error) {
         // console.log("Error sending second email:", error);
       }
-      //delply vercel
-
-
       // console.log(result);
       // res.send(result);
       res.send({ success: true });
