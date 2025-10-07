@@ -37,30 +37,39 @@ app.use(express.json());
 //   .db("ShineHome")
 //   .collection("quoteInfoCollection");
 
-async function run() {
-  try {
-    // Connect the client to the server	(optional starting in v4.7)
-    // await client.connect();
+// async function run() {
+//   try {
+//     // Connect the client to the server	(optional starting in v4.7)
+//     await client.connect();
 
-    //post client qoute into database
+//     //post client qoute into database
 
-    app.post("/quoteInfo", async (req, res) => {
-      const quoteInfo = req.body;
+//     // await client.db("admin").command({ ping: 1 });
+//     console.log(
+//       "Pinged your deployment. You successfully connected to MongoDB!"
+//     );
+//   } finally {
+//     // Ensures that the client will close when you finish/error
+//     // await client.close();
+//   }
+// }
+// run().catch(console.dir);
 
-      // const result = await quoteInfoCollection.insertOne(quoteInfo);
-      //nodemail mail transporter
-      const transporter = nodemailer.createTransport({
-        host: "smtp.office365.com",
-        port: 587,
-        secure: false,
-        auth: {
-          user: process.env.MAIL_USER,
-          pass: process.env.MAIL_PASS,
-        },
-      });
+app.post("/quoteInfo", async (req, res) => {
+  const quoteInfo = req.body;
 
-      //send email to client
-      const emailTemplate1 = `
+  const transporter = nodemailer.createTransport({
+    host: "smtp.office365.com",
+    port: 587,
+    secure: false,
+    auth: {
+      user: process.env.MAIL_USER,
+      pass: process.env.MAIL_PASS,
+    },
+  });
+
+  //send email to client
+  const emailTemplate1 = `
 <!DOCTYPE html>
 <html>
 <head>
@@ -298,7 +307,7 @@ async function run() {
 </body>
 </html>
 `;
-      const emailTemplate2 = `
+  const emailTemplate2 = `
 <!DOCTYPE html>
 <html>
 <head>
@@ -485,75 +494,49 @@ ${quoteInfo.message}
 </body>
 </html>`;
 
-      const mailOptions = {
-        from: "admin@ozshinecleaners.com",
-        to: [quoteInfo.email],
-        subject: "We've recive your massage",
-        html: emailTemplate1,
-        replyTo: "admin@ozshinecleaners.com",
-      };
+  // Email to client
+  const mailOptions1 = {
+    from: "admin@ozshinecleaners.com",
+    to: [quoteInfo.email],
+    subject: "We've received your message",
+    html: emailTemplate1,
+    replyTo: "admin@ozshinecleaners.com",
+  };
 
-      //send mail
-      const sendMailPromise = new Promise((resolve, reject) => {
-        transporter.sendMail(mailOptions, (error, success) => {
-          if (error) {
-            // console.error("Error sending email:", error);
-            reject(error);
-          } else {
-            // console.log("Email sent successfully:", success);
-            resolve(success);
-          }
-        });
-      });
+  // Email to ozShineCleaners
+  const mailOptions2 = {
+    from: "admin@ozshinecleaners.com",
+    to: "admin@ozshinecleaners.com",
+    subject: `🔔 New Quote Request: ${quoteInfo.service} - ${quoteInfo.name}`,
+    html: emailTemplate2,
+    replyTo: "admin@ozshinecleaners.com",
+  };
 
-      try {
-        await sendMailPromise;
-      } catch (error) {
-        console.log("Error sending email:", error);
-      }
-      //send email to ozShineCleaners
+  try {
+    // Send both emails in parallel using Promise.allSettled
+    const results = await Promise.allSettled([
+      transporter.sendMail(mailOptions1),
+      transporter.sendMail(mailOptions2),
+    ]);
 
-      const sendMailPromise2 = new Promise((resolve, reject) => {
-        const mailOptions2 = {
-          from: "admin@ozshinecleaners.com",
-          to: "admin@ozshinecleaners.com", // Second recipient ozshineCleaners
-          subject: `🔔 New Quote Request: ${quoteInfo.service} - ${quoteInfo.name}`,
-          html: emailTemplate2,
-          replyTo: "admin@ozshinecleaners.com",
-        };
+    // Check results
+    const [clientEmail, adminEmail] = results;
 
-        transporter.sendMail(mailOptions2, (error, success) => {
-          if (error) {
-            // console.error("Error sending second email:", error);
-            reject(error);
-          } else {
-            // console.log("Second Email sent successfully:", success);
-            resolve(success);
-          }
-        });
-      });
+    if (clientEmail.status === "rejected") {
+      console.error("Error sending client email:", clientEmail.reason);
+    }
 
-      try {
-        await sendMailPromise2;
-      } catch (error) {
-        // console.log("Error sending second email:", error);
-      }
-      // console.log(result);
-      // res.send(result);
-      res.send({ success: true });
-    });
+    if (adminEmail.status === "rejected") {
+      console.error("Error sending admin email:", adminEmail.reason);
+    }
 
-    // Send a ping to confirm a successful connection
-    // await client.db("admin").command({ ping: 1 });
-    console.log(
-      "Pinged your deployment. You successfully connected to MongoDB!"
-    );
-  } finally {
-    // Ensures that the client will close when you finish/error
-    // await client.close();
+    // Respond with success even if one email fails
+    res.send({ success: true });
+  } catch (error) {
+    console.error("Unexpected error:", error);
+    res.status(500).send({ success: false, error: "Failed to send emails" });
   }
-}
-run().catch(console.dir);
+});
 
 app.get("/", (req, res) => {
   res.send("Ozshine cleners server is running");
