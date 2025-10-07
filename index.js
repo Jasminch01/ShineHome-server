@@ -326,7 +326,7 @@ app.post("/quoteInfo", async (req, res) => {
               <h1 style="margin: 0; color: #ffffff; font-size: 24px; font-weight: 600; font-family: 'Segoe UI', Arial, sans-serif;">
                 New Quote Request Received
               </h1>
-              <p style="margin: 10px 0 0 0; color: #e0f2e9; font-size: 14px; font-family: 'Segoe UI', Arial, sans-serif;">
+              <p style="margin: 10px 0 0 0; color: #0F5E46; font-size: 14px; font-family: 'Segoe UI', Arial, sans-serif;">
                 A potential customer is interested in your services
               </p>
             </td>
