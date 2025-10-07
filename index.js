@@ -11,7 +11,12 @@ const port = process.env.PORT || 5001;
 // middleware
 app.use(
   cors({
-    origin: ["http://localhost:3000", "https://www.ozshinecleaners.com.au", "https://ozshine-cleaners.vercel.app/"],
+    origin: [
+      "http://localhost:3000",
+      "https://www.ozshinecleaners.com.au",
+      "https://ozshine-cleaners.vercel.app/",
+      "https://www.ozshinecleaners.com.",
+    ],
     credentials: true,
   })
 );
@@ -522,8 +527,9 @@ ${quoteInfo.message}
         console.log("Error sending second email:", error);
       }
       //
-      console.log(result);
-      res.send(result);
+      // console.log(result);
+      // res.send(result);
+      res.send({ success: true });
     });
 
     // Send a ping to confirm a successful connection
